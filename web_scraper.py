@@ -18,7 +18,7 @@ def find_training_links(url, keywords, max_depth=1):
         except Exception:
             print(f"Failed to retrieve {current_url}")
             return
-            
+
         # Look at every hyperlink with a destination
         for a in soup.find_all('a', href=True):
             href = a['href']
@@ -38,7 +38,7 @@ def find_training_links(url, keywords, max_depth=1):
 
             # Follow links in set domain
             parsed = urlparse(full_url)
-            if "cisco.com" in parsed.netloc: #CHANGE HERE TO DOMAIN
+            if "cisco.com" in parsed.netloc: # CHANGE HERE TO CORRECT DOMAIN
                 crawl(full_url, depth + 1)
     crawl(url, 0)
     return list(found)
@@ -53,5 +53,5 @@ if __name__ == "__main__":
         "collaboration", "clcor", "cyberops", "devnet", "ensari", "associate", "professional", "technician"
     ]
 
-    training_links = find_training_links(url, keywords, max_depth=2)
+    training_links = find_training_links(url, keywords, max_depth=2) # CHANGE MAX DEPTH TO DESIRED
     print("Total training links found:", len(training_links))
