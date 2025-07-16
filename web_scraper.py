@@ -2,8 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 
-
-
 #Function will find training links on given website based on keywords inputted to a certain max_depth.
 def find_training_links(url, keywords, max_depth=1):
     visited = set()  # URLs already visited
@@ -16,7 +14,7 @@ def find_training_links(url, keywords, max_depth=1):
             response = requests.get(current_url)
             soup = BeautifulSoup(response.text, 'lxml')
         except Exception:
-            print(f"Failed to retrieve {current_url}")
+            print(f"Could not find {current_url}")
             return
 
         # Look at every hyperlink with a destination
